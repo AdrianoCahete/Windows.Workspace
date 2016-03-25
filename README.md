@@ -6,7 +6,7 @@ This is intended to people who like my profile, work with me and, more important
 ## :warning: WARNING
 **This Install isn't tested and isn't complete! Don't run it!**
 
-** This Profile will replace your profile. Backup and incremetal install are planned.**
+**This Profile will replace your profile. Backup and incremetal install are planned.**
 
 ### Components
 This profile contains (and obvious install) some components:
