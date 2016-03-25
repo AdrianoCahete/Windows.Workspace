@@ -1,0 +1,54 @@
+{
+	"plugins": [ "git", "ssh", "z", "aliases", "dircolors" ],
+	"prompt": [
+		[ "", 		"", " PS $pwd>" 		 ],
+		[ "white", 	"", " $(&{If($git_branch.Length) {'[ '} Else {''}})" ],
+		
+		[ "cyan",   "", "$git_branch " ],
+		[ "yellow", 	"", " $(&{If($git_local_state.Length) { $git_local_state } Else {''}})" ],
+		[ "darkblue", 	"", " $(&{If($git_remote_state.Length) { $git_remote_state } Else {''}})" ],
+		
+		[ "white", 	"", " $(&{If($git_branch.Length) {']'} Else {''}})" ],
+		[ "cyan",   "", "$hg_lbracket $hg_branch $hg_bookmark $hg_dirty $hg_rbracket" ]
+	],
+	"dircolors": {
+		"dirs": [
+			[".*", "", ""]
+		],
+		"files": [
+		    ["(?ix).(7z|zip|tar|gz|rar)$",                       			 "darkcyan",   	""],
+		    ["(?ix).(exe|bat|cmd|py|pl|ps1|psm1|vbs|rb|reg)$",   			 "darkgreen",  	""],
+		    ["(?ix).(doc|docx|ppt|pptx|xls|xlsx|mdb|mdf|ldf)$",  			 "magenta",    	""],
+		    ["(?ix).(txt|cfg|conf|config|yml|ini|csv|log|json)$", 			 "darkyellow", 	""],
+		    ["(?ix).(sln|csproj|sqlproj|proj|targets)$",          			 "darkred",    	""],
+			["(?ix).(php|cshtml)$",											 "red",			""],
+			["(?ix).(less|scss|sass)$",										 "darkgreen",	""],
+			["(?ix).(html|css)$",											 "yellow",		""],
+			["(?ix).(md|codekit)$",											 "gray",		""],
+			["(?ix).(jpg|png|ico|bmp)$",									 "darkcyan",	""],
+		    [".*",                                              			 "darkgray",   	""]
+		]
+	},
+	"aliases": {
+		"rm": [ "help", "man" ],
+		"add": {
+			"help($name)": "get-help $name -detailed",
+			"man": "help"
+		}
+	},
+	"git": {
+		"prompt_dirty": "x",
+		"prompt_lbracket": " [",
+		"prompt_rbracket": "]",
+		"prompt_unstaged": "~ ",
+		"prompt_staged": "+ ",
+		"prompt_stash": "$ ",
+		"prompt_untracked": "%",
+		"prompt_remote_push": "> ",
+		"prompt_remote_pull": "< ",
+		"prompt_remote_same": "="
+	},
+	"hg": {
+		"prompt_dirty": "*"
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"plugins": [ "ssh", "z", "aliases", "dircolors" ],
+	"prompt": [
+		[ "", 		"", " PS $pwd>" 		 ],
+		[ "cyan",   "", "$hg_lbracket $hg_branch $hg_bookmark $hg_dirty $hg_rbracket" ]
+	],
+	"dircolors": {
+		"dirs": [
+			[".*", "", ""]
+		],
+		"files": [
+		    ["(?ix).(7z|zip|tar|gz|rar)$",                       			 "darkcyan",   	""],
+		    ["(?ix).(exe|bat|cmd|py|pl|ps1|psm1|vbs|rb|reg)$",   			 "darkgreen",  	""],
+		    ["(?ix).(doc|docx|ppt|pptx|xls|xlsx|mdb|mdf|ldf)$",  			 "magenta",    	""],
+		    ["(?ix).(txt|cfg|conf|config|yml|ini|csv|log|json)$", 			 "darkyellow", 	""],
+		    ["(?ix).(sln|csproj|sqlproj|proj|targets)$",          			 "darkred",    	""],
+			["(?ix).(php|cshtml)$",											 "red",			""],
+			["(?ix).(less|scss|sass)$",										 "darkgreen",	""],
+			["(?ix).(html|css)$",											 "yellow",		""],
+			["(?ix).(md|codekit)$",											 "gray",		""],
+			["(?ix).(jpg|png|ico|bmp)$",									 "darkcyan",	""],
+		    [".*",                                              			 "darkgray",   	""]
+		]
+	},
+	"aliases": {
+		"add": {
+			"help($name)": "get-help $name -detailed",
+			"man": "help"
+		}
+	},
+	"hg": {
+		"prompt_dirty": "*"
+	}
+}
