@@ -17,14 +17,12 @@ This profile contains (and obvious install) some components:
 - [PSReadLine](https://github.com/lzybkr/PSReadLine/) -  A bash inspired readline implementation for PowerShell 
 - [posh-git](http://dahlbyk.github.io/posh-git/) - A PowerShell environment for Git
 - [posh-npm](https://github.com/MSOpenTech/posh-npm) - Powershell-NPM integration 
-
 - If you dont have Powershell 5: [PSGet](http://psget.net/) - Search and install PowerShell modules easy. (PowerShell5 do it natively)
 
 ### Scripts
 This profile contains part or full scripts from other sources
 - Modified version of [PoshFunctions Powershell Update](https://github.com/kilasuit/PoshFunctions)
-- [Wormeyman SourceCode Font Install](https://gist.github.com/wormeyman/9041798)
-- 
+- [Wormeyman SourceCode Font Install](https://gist.github.com/wormeyman/9041798) 
 
 ## TODO
 - Check is admin
