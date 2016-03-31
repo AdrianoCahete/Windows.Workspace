@@ -166,12 +166,18 @@ function UpdatePowerShell {
 }
 
 function Install-SourceProFont {
-	choco install sourcecodepro -y --limitoutput
 
-	# https://gist.github.com/wormeyman/9041798
-	Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" #Get the properties of TTF
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" -Name 000 -Value "Source Code Pro" #Set it to SCP
-	#Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" #Check to see if we properly set it so that SCP is an option
+	$SourceProFontInstalled = choco list -lo
+	if ($SourceProFontInstalled -match "SourceCodePro") {
+		echo "[!] SourceCodePro is already installed`n" 
+	} else {
+		choco install sourcecodepro -y --limitoutput
+
+		# https://gist.github.com/wormeyman/9041798
+		Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" #Get the properties of TTF
+		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" -Name 000 -Value "Source Code Pro" #Set it to SCP
+		#Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont" #Check to see if we properly set it so that SCP is an option
+	}
 }
 
 # Install Powershell Tools
@@ -189,6 +195,7 @@ function Install-PowerShellProfile {
 				echo "`n[ Create and populate Profile ]`n"
 				New-Item -path $profile -type file -force
 				# Copy from path\profile\profile.sample.ps1 to $profile 
+				(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/profile/profile.sample.ps1") > $PSFolder\Microsoft.PowerShell_profile.ps1
 			} else {
 				# Exist, replace profile
 				echo "`n[ Profile already exist. Proceeding install... ]`n"
@@ -200,6 +207,7 @@ function Install-PowerShellProfile {
 					# Yes
 					echo "`n[!] Replacing Profile..."
 					# Copy and rename from path\profile\profile.sample.ps1 to $profile 
+					(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/profile/profile.sample.ps1") > $PSFolder\Microsoft.PowerShell_profile.ps1
 				} else {
 					# No, i don"t know wtf i"m doing, i need to stop this right now!!!!
 					echo "`n/!\ Profile creation has been canceled by user.`nYou'll need to make all changes manually."
@@ -216,10 +224,16 @@ function Install-PowerShellProfile {
 			#Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 			
 			
-			# Install Chcolatey -- Resulting in an error now (2016-03-31)
-			iex ((new-object net.webclient).DownloadString("https://chocolatey.org/install.ps1"))
+			# Install Chcolatey -- IDK why working like that
+			$chocoInstalled = choco
+			if (-Not ("$chocoInstalled" -contains "Chocolatey v")) {
+				echo "[!] Chcolatey is already installed`n"
+			}
+			else {
+				iex ((new-object net.webclient).DownloadString("https://chocolatey.org/install.ps1"))
+			}
 			
-			# Install SourcePro Font -- Resulting in an error now (2016-03-31)
+			# Install SourcePro Font
 			Install-SourceProFont
 			
 			
@@ -248,9 +262,8 @@ function Install-PowerShellProfile {
 			# Get and copy to path
 			$pshazzThemeFile = pshazz which microsoft
 			$pshazzFolder = Split-Path "$pshazzThemeFile"
-			(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/components/pshazz/pshazz_profile.json") > $pshazzFolder\pshazz_profile.json
-			pshazz get $pshazzFolder\pshazz_profile.json
-			pshazz use pshazz_profile
+			(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/components/pshazz/pshazz_profile.json") > $pshazzFolder\monokaivs.json
+			pshazz use monokaivs
 			
 			
 			if ($PSVersionInstalled -lt $PSVersionExpected) {
@@ -263,7 +276,8 @@ function Install-PowerShellProfile {
 			# PSReadLine -- https://github.com/lzybkr/PSReadLine/
 			echo "`n+ Installing PSReadLine..."
 			echo "This will might ask for Nuget as Packet Provider. Please, allow that install."
-			Install-Module PSReadline
+			Set-PSRepository -Name PSGallery -InstallationPolicy Trusted -Verbose
+			Install-Module PSReadline -Force 
 			#"" | Out-File $PROFILE -Append
 			
 			# posh-git -- https://github.com/dahlbyk/posh-git/
