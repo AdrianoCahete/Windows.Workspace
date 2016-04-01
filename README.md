@@ -55,11 +55,12 @@ More info, at Components section above.
 ## TODO
 - ~~Check if PowerShell Window is running with admin privileges~~
 - ~~Check if anything is already installed and don't do it again~~
+- Fix Posh-Git don't working
 - Backup PowerShell profile first
 - Incremental PowerShell Profile
 - Remove Scoop requirement for some components
-- Remove PSGet requiremet if PowerShell version is better or equal 5
-- Check ExecutionPolicy per User and per Process, separately
+- Remove PSGet requiremet if PowerShell version if is better or equal 5
+- Check and update ExecutionPolicy per User and per Process, separately
 - Install NodeJS
 - Install my required tools to work (from npm)
 - Use [Git Credential Manager](https://github.com/Microsoft/Git-Credential-Manager-for-Windows)

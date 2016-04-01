@@ -3,7 +3,7 @@
 
 #Load PS scripts
 $DocumentsFolder = [Environment]::GetFolderPath("MyDocuments")
-$PSdir= Join-Path $DocumentsFolder "\scripts\autoload"
+$PSdir = Join-Path $DocumentsFolder "\WindowsPowerShell\scripts\autoload"
 Get-ChildItem "${PSdir}\*.ps1" | %{.$_}
 
 # Data Vars
