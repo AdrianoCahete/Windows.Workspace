@@ -190,7 +190,16 @@ function Install-PowerShellProfile {
 		if ($policy -ne "Unrestricted") { 
 			TestExecutionPolicy
 		} else {
+			# Start Install
+			echo "-----------------------------------------------"
+			echo "	PowerShell Profile Installer"
+			echo "	  Created by Adriano Cahete`n`n"
+			echo "	  github.com/AdrianoCahete"
+			echo "-----------------------------------------------"
+			echo "		Starting...`n"
+		
 			# Check if Profile Exists
+			echo "[ Check if profile exists... ]"
 			if (!(test-path $PROFILE)) {
 				# Don"t exist, so create profile 
 				echo "`n[ Create and populate Profile ]`n"
@@ -199,7 +208,7 @@ function Install-PowerShellProfile {
 				echo "Profile created at $PSFolder\Microsoft.PowerShell_profile.ps1 `nUse 'ii $PSFolder\Microsoft.PowerShell_profile.ps1' to open it"
 			} else {
 				# Exist, replace profile
-				echo "`n[ Profile already exist. Proceeding install... ]`n"
+				echo "`n[!] Profile already exist. Proceeding install...`n"
 				echo "/!\ This script will be replace your currently Powershell Profile!"
 
 				# Replace Profile?
@@ -275,7 +284,7 @@ function Install-PowerShellProfile {
 			# Pshazz -- https://github.com/lukesampson/pshazz
 			$scoopInstalledpshazz = scoop list
 			if ("$scoopInstalledpshazz" -match "pshazz") {
-				echo "[!] Pshazz is already installed`n"
+				echo "`n[!] Pshazz is already installed`n"
 			}
 			else {
 				echo "`n+ Installing Pshazz..."
@@ -296,7 +305,8 @@ function Install-PowerShellProfile {
 				# PSGet -- http://psget.net/
 				echo "`n+ Installing PSGet..."
 				(new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
-				echo "[!] You can find new modules for your Powershell environment here: http://psget.net/directory/ `nConsider update your Powershell Install"
+				echo "`n[!] You can find new modules for your Powershell environment here: http://psget.net/directory/"
+				#echo "Consider update your Powershell Install`n"
 			#}
 			
 			# PSReadLine -- https://github.com/lzybkr/PSReadLine/
@@ -318,29 +328,41 @@ function Install-PowerShellProfile {
 			
 			# Copy functions to Documents Folder
 			echo "`n+ Copy Functions..."
+			
 			# posh-git 
-			(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-git.ps1") > $PSFolder\scripts\autoload\profile_posh-git.ps1
+			if (Test-Path $PSFolder\scripts\autoload\profile_posh-git.ps1) {
+				echo "`n[!] PoshGit is already loaded"
+			} else {
+				mkdir $PSFolder\scripts\autoload\
+				(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-git.ps1") > $PSFolder\scripts\autoload\profile_posh-git.ps1
+			}
 			
 			# posh-npm
-			(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-npm.ps1") > $PSFolder\scripts\autoload\profile_posh-npm.ps1
+			if (Test-Path $PSFolder\scripts\autoload\profile_posh-npm.ps1) {
+				echo "`n[!] PoshNPM is already loaded"
+			} else {
+				#mkdir $PSFolder\scripts\autoload\
+				(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-npm.ps1") > $PSFolder\scripts\autoload\profile_posh-npm.ps1
+			}
 			
 			echo "`n[!] Installing Complete!"
+			echo "`n/!\ You need to reload your profile to see changes."
 			# Reload Profile?
-			$profileReload = Read-Host "[?] Are you sure you want to proceed? [Y] or [N]"
+			$profileReload = Read-Host "[?] Are you sure you want to reload your profile now? [Y] or [N]"
 			if ($profileReload -eq "y" -Or $profileReload -eq "yes") {
 				# Yes
-				echo "`n[!] Reloading Profile..."
+				echo "`n[!] Reloading Profile... You Powershell will blink some times."
 				Start-Sleep -s 5
 				.$profile
 			} else {
-				echo "`n/!\ You need to reload your profiel to see changes. You can do it with command below:"
+				echo "`n/!\ You need to reload your profile to see changes. You can do it with command below:"
 				echo " . $profile"
 			}
 		}
 	} else {
-		$updatePSVersion = Read-Host "[?] Is recommende to update your PowerShell version (actual version is $PSVersionInstalled . This script will update to $PSVersionExpected `n[?] Do you want to proceed? [Y] or [N]"
+		$updatePSVersion = Read-Host "[?] Is recommended to update your PowerShell version (actual version is $PSVersionInstalled . This script will update to $PSVersionExpected `n[?] Do you want to proceed? [Y] or [N]"
 				
-		# Change Execution Policy?
+		# Update PS Version?
 		if ($updatePSVersion -eq "y" -Or $updatePSVersion -eq "yes") {
 			echo "Updating your Powershell to latest version."
 			UpdatePowerShell

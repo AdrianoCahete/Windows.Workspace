@@ -5,16 +5,24 @@ This is intended to people who like my workspace, work with me and, more importa
 
 This workspace will have some components and PowerShell Scripts to install or update my workspace.
 
-## :warning: WARNING
-**This Install isn't tested and isn't complete! Don't run it!**
+## :warning: Notes
 
-The machine has to be direct access to ```https://raw.githubusercontent.com``` (without autentication process) to download packages
+- The machine has to be direct access to ```https://raw.githubusercontent.com``` (without autentication process) to download packages
+- Install Scripts is just tested with Windows 10 (x64)
+- **Create a profile backup beefore run this install**
+
+## Install
+To install PowerShell Profile, just need to download and run (as admininistrator) ```PowerShell\Install-PowerShell_Profile.ps1```
+
+You don't need to download all repository, install file download components from here.
+
 
 
 ## PowerShell Profile
 **This Profile will replace your profile. Backup and incremetal install are planned.**
 
-:grey_exclamation: This script needs to change Execution Policy to run.
+:grey_exclamation: This script needs to change Execution Policy to run and will try to change itself
+
 For more info: https://technet.microsoft.com/pt-br/library/ee176961.aspx
 
 ### Components
@@ -38,7 +46,7 @@ PowerShell profile contains part or full scripts from other sources
 ~~If you want to configure beyond that configuration, you can edit pshazz profile, concfg and PSProfile itself. I already created a shortcut who'll open that files (before install) in associated editor (for json and ps1 files).~~
 
 Isn't automatized yet, but you can edit alias, colors and all that pshazz using: ```pshazz edit monokaivs```
-TO edit colors, you can edit concfg using:  ```concfg export``` edit than do ```concfg import```
+To edit colors, you can edit concfg using:  ```concfg export``` edit than do ```concfg import``` and edit Porfile Itself
 
 More info, at Components section above.
 
