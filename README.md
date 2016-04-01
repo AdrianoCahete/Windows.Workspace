@@ -8,6 +8,8 @@ This workspace will have some components and PowerShell Scripts to install or up
 ## :warning: WARNING
 **This Install isn't tested and isn't complete! Don't run it!**
 
+The machine has to be direct access to ```https://raw.githubusercontent.com``` (without autentication process) to download packages
+
 
 ## PowerShell Profile
 **This Profile will replace your profile. Backup and incremetal install are planned.**
@@ -24,7 +26,7 @@ This PowerShell profile contains (and obvious install) some components:
 - [PSReadLine](https://github.com/lzybkr/PSReadLine/) -  A bash inspired readline implementation for PowerShell 
 - [posh-git](http://dahlbyk.github.io/posh-git/) - A PowerShell environment for Git
 - [posh-npm](https://github.com/MSOpenTech/posh-npm) - Powershell-NPM integration 
-- If you dont have Powershell 5: [PSGet](http://psget.net/) - Search and install PowerShell modules easy. (PowerShell5 do it natively)
+- [PSGet](http://psget.net/) - Search and install PowerShell modules easy. (PowerShell5 do it natively)
 
 ## Scripts
 PowerShell profile contains part or full scripts from other sources
@@ -32,13 +34,23 @@ PowerShell profile contains part or full scripts from other sources
 - [Wormeyman SourceCode Font Install](https://gist.github.com/wormeyman/9041798)
 - [Check is User has privileges to run (Check is Admin)](https://blogs.technet.microsoft.com/heyscriptingguy/2011/05/11/check-for-admin-credentials-in-a-powershell-script/)
 
+## Aditional Config
+~~If you want to configure beyond that configuration, you can edit pshazz profile, concfg and PSProfile itself. I already created a shortcut who'll open that files (before install) in associated editor (for json and ps1 files).~~
+
+Isn't automatized yet, but you can edit alias, colors and all that pshazz using: ```pshazz edit monokaivs```
+TO edit colors, you can edit concfg using:  ```concfg export``` edit than do ```concfg import```
+
+More info, at Components section above.
+
+
 
 ## TODO
 - ~~Check if PowerShell Window is running with admin privileges~~
+- ~~Check if anything is already installed and don't do it again~~
 - Backup PowerShell profile first
 - Incremental PowerShell Profile
 - Remove Scoop requirement for some components
-- Check if anything is already installed and don't do it again
+- Remove PSGet requiremet if PowerShell version is better or equal 5
 - Check ExecutionPolicy per User and per Process, separately
 - Install NodeJS
 - Install my required tools to work (from npm)

@@ -1,7 +1,7 @@
 {
     "cursor_size":  "small",
-    "font_face":  "Source Code Pro",
-    "font_size":  "0x16",
+    "font_face":  "Lucida Console",
+    "font_size":  "0x14",
     "popup_colors":  "black,cyan",
     "dark_gray":  "#b5b5b5",
     "screen_colors":  "cyan,black",

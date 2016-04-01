@@ -156,12 +156,13 @@ function UpdatePowerShell {
 	Write-Verbose "You need to Reboot after install of WMF4, so you can now proceed to install WMF5"
 	$restartPrompt = Read-Host "[?] Are you sure you want to proceed? [Y] or [N]"
 	if ($restartPrompt -eq "y" -Or $restartPrompt -eq "yes") {
-			# Yes
-			echo "`n[!] Restarting in 5 seconds..."
-			shutdown /r /t 5
+		# Yes
+		echo "`n[!] Restarting in 5 seconds..."
+		shutdown /r /t 5
 	} else {
 		# No 
 		echo "`n/!\ You need to restart manually."
+		break
 	}
 }
 
@@ -194,24 +195,27 @@ function Install-PowerShellProfile {
 				# Don"t exist, so create profile 
 				echo "`n[ Create and populate Profile ]`n"
 				New-Item -path $profile -type file -force
-				# Copy from path\profile\profile.sample.ps1 to $profile 
 				(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/profile/profile.sample.ps1") > $PSFolder\Microsoft.PowerShell_profile.ps1
+				echo "Profile created at $PSFolder\Microsoft.PowerShell_profile.ps1 `nUse 'ii $PSFolder\Microsoft.PowerShell_profile.ps1' to open it"
 			} else {
 				# Exist, replace profile
 				echo "`n[ Profile already exist. Proceeding install... ]`n"
 				echo "/!\ This script will be replace your currently Powershell Profile!"
-				$profileReplace = Read-Host "[?] Are you sure you want to proceed? [Y] or [N]"
 
 				# Replace Profile?
+				$profileReplace = Read-Host "[?] Are you sure you want to proceed? [Y] or [N]"
 				if ($profileReplace -eq "y" -Or $profileReplace -eq "yes") {
 					# Yes
 					echo "`n[!] Replacing Profile..."
 					# Copy and rename from path\profile\profile.sample.ps1 to $profile 
 					(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/profile/profile.sample.ps1") > $PSFolder\Microsoft.PowerShell_profile.ps1
+					echo "Profile created at $PSFolder\Microsoft.PowerShell_profile.ps1 `nUse 'ii $PSFolder\Microsoft.PowerShell_profile.ps1' to open it"
 				} else {
 					# No, i don"t know wtf i"m doing, i need to stop this right now!!!!
 					echo "`n/!\ Profile creation has been canceled by user.`nYou'll need to make all changes manually."
-					# open Profile and ProfileSample
+					echo "      Profile Sample is opened now..."
+					(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/profile/profile.sample.ps1") > $PSFolder\Microsoft.PowerShell_profile.sample.ps1
+					ii $PSFolder\Microsoft.PowerShell_profile.sample.ps1
 				}
 			}
 			
@@ -224,9 +228,9 @@ function Install-PowerShellProfile {
 			#Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 			
 			
-			# Install Chcolatey -- IDK why working like that
+			# Install Chcolatey
 			$chocoInstalled = choco
-			if (-Not ("$chocoInstalled" -contains "Chocolatey v")) {
+			if ("$chocoInstalled" -match "Chocolatey v") {
 				echo "[!] Chcolatey is already installed`n"
 			}
 			else {
@@ -238,24 +242,46 @@ function Install-PowerShellProfile {
 			
 			
 			# Scoop -- http://scoop.sh/
-			echo "+ Installing Scoop..."
-			iex (new-object net.webclient).downloadstring("https://get.scoop.sh")
+			$scoopInstalled = scoop status
+			if ("$scoopInstalled" -match "up-to-date") {
+				echo "[!] Scoop is already installed`n"
+			}
+			elseif ("$scoopInstalled" -match "out of date") {
+				# Updating
+				echo "[!] Updating Scoop...`n"
+				scoop update
+			}
+			else {
+				echo "+ Installing Scoop..."
+				iex (new-object net.webclient).downloadstring("https://get.scoop.sh")
+			}
 			
 			
 			# Concfg -- https://github.com/lukesampson/concfg
-			echo "`n+ Installing Concfg...`n"
-			scoop install concfg
+			$scoopInstalledConcfg = scoop list
+			if ("$scoopInstalledConcfg" -match "concfg") {
+				echo "[!] Concfg is already installed`n"
+			}
+			else {
+				echo "`n+ Installing Concfg...`n"
+				scoop install concfg
+			}
 			
-			# TODO: Import from path\components\concfg
 			echo "-- Importing Concfg profile..."
 			concfg clean
 			concfg import --non-interactive https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/components/concfg/concfg_monokai-vs.json
 			
 			
 			# Pshazz -- https://github.com/lukesampson/pshazz
-			echo "`n+ Installing Pshazz..."
-			scoop install pshazz
-			pshazz init
+			$scoopInstalledpshazz = scoop list
+			if ("$scoopInstalledpshazz" -match "pshazz") {
+				echo "[!] Pshazz is already installed`n"
+			}
+			else {
+				echo "`n+ Installing Pshazz..."
+				scoop install pshazz
+				pshazz init
+			}
 			
 			# Get from Repo
 			echo "-- Getting Pshazz Profile..."
@@ -266,33 +292,50 @@ function Install-PowerShellProfile {
 			pshazz use monokaivs
 			
 			
-			if ($PSVersionInstalled -lt $PSVersionExpected) {
+			#if ($PSVersionInstalled -lt $PSVersionExpected) {
 				# PSGet -- http://psget.net/
 				echo "`n+ Installing PSGet..."
 				(new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
 				echo "[!] You can find new modules for your Powershell environment here: http://psget.net/directory/ `nConsider update your Powershell Install"
-			}
+			#}
 			
 			# PSReadLine -- https://github.com/lzybkr/PSReadLine/
 			echo "`n+ Installing PSReadLine..."
 			echo "This will might ask for Nuget as Packet Provider. Please, allow that install."
-			Set-PSRepository -Name PSGallery -InstallationPolicy Trusted -Verbose
+			Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 			Install-Module PSReadline -Force 
 			#"" | Out-File $PROFILE -Append
 			
 			# posh-git -- https://github.com/dahlbyk/posh-git/
 			echo "`n+ Installing posh-git..."
-			Install-Module posh-git
+			Install-Module posh-git -Force
 			
 			# posh-npm -- https://github.com/MSOpenTech/posh-npm
+			# Didn't Install because https://github.com/MSOpenTech/posh-npm/issues/1
 			echo "`n+ Installing posh-npm..."
-			Install-Module posh-npm
+			Install-Module posh-npm -Force
 
 			
 			# Copy functions to Documents Folder
+			echo "`n+ Copy Functions..."
+			# posh-git 
+			(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-git.ps1") > $PSFolder\scripts\autoload\profile_posh-git.ps1
 			
-			# Reload Profile
-			.$profile
+			# posh-npm
+			(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-npm.ps1") > $PSFolder\scripts\autoload\profile_posh-npm.ps1
+			
+			echo "`n[!] Installing Complete!"
+			# Reload Profile?
+			$profileReload = Read-Host "[?] Are you sure you want to proceed? [Y] or [N]"
+			if ($profileReload -eq "y" -Or $profileReload -eq "yes") {
+				# Yes
+				echo "`n[!] Reloading Profile..."
+				Start-Sleep -s 5
+				.$profile
+			} else {
+				echo "`n/!\ You need to reload your profiel to see changes. You can do it with command below:"
+				echo " . $profile"
+			}
 		}
 	} else {
 		$updatePSVersion = Read-Host "[?] Is recommende to update your PowerShell version (actual version is $PSVersionInstalled . This script will update to $PSVersionExpected `n[?] Do you want to proceed? [Y] or [N]"
