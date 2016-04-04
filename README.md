@@ -61,6 +61,7 @@ More info, at Components section above.
 - Remove Scoop requirement for some components
 - Remove PSGet requiremet if PowerShell version if is better or equal 5
 - Check and update ExecutionPolicy per User and per Process, separately
+- Standardize echo with Write-Verbose/Write-progress
 - Install NodeJS
 - Install my required tools to work (from npm)
 - Use [Git Credential Manager](https://github.com/Microsoft/Git-Credential-Manager-for-Windows)
