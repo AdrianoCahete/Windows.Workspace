@@ -26,7 +26,7 @@
 		"add": {
 			"help($name)": "get-help $name -detailed",
 			"man": "help",
-			"Create-Guid":"[guid]::NewGuid().Guid"
+			"Create-Guid":"echo [guid]::NewGuid().Guid"
 		}
 	},
 	"hg": {

@@ -324,6 +324,14 @@ function Install-PowerShellProfile {
 			# Didn't Install because https://github.com/MSOpenTech/posh-npm/issues/1
 			echo "`n+ Installing posh-npm..."
 			Install-Module posh-npm -Force
+			
+			# Git Credential Manager for-Windows
+			echo "`n+ Installing Git Credential Manager..."
+			choco install git-credential-manager-for-windows -y
+			
+			# NodeJS
+			echo "`n+ Installing NodeJS..."
+			choco install nodejs.install -y
 
 			
 			# Copy functions to Documents Folder
@@ -335,6 +343,7 @@ function Install-PowerShellProfile {
 			} else {
 				mkdir $PSFolder\scripts\autoload\
 				(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-git.ps1") > $PSFolder\scripts\autoload\profile_posh-git.ps1
+				#"" | Out-File $PROFILE -Append
 			}
 			
 			# posh-npm

@@ -51,3 +51,6 @@ if ($host.UI.RawUI.WindowTitle -match "Administrador" -Or $host.UI.RawUI.WindowT
 # Infos
 Write-Host "[ Custom PowerShell Environment Loaded ]`n[ Created by Adriano Cahete - https://github.com/AdrianoCahete/Windows.Workspace ]`n" 
 try { $null = gcm pshazz -ea stop; pshazz init 'monokaivs' } catch { }
+
+#Loads git/npm
+#. '$PSdir\profile_posh-git.ps1'
