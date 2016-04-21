@@ -5,7 +5,10 @@ This is intended to people who like my workspace, work with me and, more importa
 
 This workspace will have some components and PowerShell Scripts to install or update my workspace.
 
+![PowerShell example Image](https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/imgs/ps_example.PNG)
+Colors can be edited with ```pshazz edit monokaivs``` command
 
+![PowerShell example Image](https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/imgs/wincred.PNG)
 
 ## :warning: Notes
 
