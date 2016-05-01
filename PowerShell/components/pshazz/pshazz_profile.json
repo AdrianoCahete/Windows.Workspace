@@ -25,8 +25,7 @@
 	"aliases": {
 		"add": {
 			"help($name)": "get-help $name -detailed",
-			"man": "help",
-			"Create-Guid":"echo [guid]::NewGuid().Guid"
+			"man": "help"
 		}
 	},
 	"hg": {

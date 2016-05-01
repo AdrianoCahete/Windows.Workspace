@@ -6,14 +6,17 @@ This is intended to people who like my workspace, work with me and, more importa
 This workspace will have some components and PowerShell Scripts to install or update my workspace.
 
 ![PowerShell example Image](https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/imgs/ps_example.PNG)
+
 Colors can be edited with ```pshazz edit monokaivs``` command
+
+--
 
 ![PowerShell example Image](https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/imgs/wincred.PNG)
 
 ## :warning: Notes
 
 - The machine has to be direct access to ```https://raw.githubusercontent.com``` (without autentication process) to download packages
-- Install Scripts is just tested with Windows 10 (x64)
+- Install Scripts is just tested with Windows 10 (x64) and Windows 8.1 (x64)
 - **Create a profile backup beefore run this install**
 
 ## Install
@@ -52,6 +55,24 @@ PowerShell profile contains part or full scripts from other sources
 - [Wormeyman SourceCode Font Install](https://gist.github.com/wormeyman/9041798)
 - [Check is User has privileges to run (Check is Admin)](https://blogs.technet.microsoft.com/heyscriptingguy/2011/05/11/check-for-admin-credentials-in-a-powershell-script/)
 
+## Functions
+Now, this repo has access to functions, separately. You can get and use (giving me and/or the people who created the function credit).
+
+You just need to get in Functions folder.
+
+Avaliable Functions are:
+- CheckIsAdmin (see above);
+- TestExecutionPolice (Test the user or process about Execution Police)
+- UpdatePowerShell (Update PowerShell Environment to PS5)
+- Get-FileEncoding (Get enconding from file)
+- Check-WindowsFeature (Check for a Windows Feature, if don't installed, script will install itself)
+- Install-SourceProFont (Install SourcePro Font)
+
+The following functions are not yet complete or tested, so the use is not recommended:
+- InstallNode
+- NpmPackages
+
+
 
 ## Aditional Config
 ~~If you want to configure beyond that configuration, you can edit pshazz profile, concfg and PSProfile itself. I already created a shortcut who'll open that files (before install) in associated editor (for json and ps1 files).~~
@@ -59,7 +80,7 @@ PowerShell profile contains part or full scripts from other sources
 Isn't automatized yet, but you can edit alias, colors and all that pshazz using: ```pshazz edit monokaivs```
 To edit colors, you can edit concfg using:  ```concfg export``` edit than do ```concfg import``` and edit Porfile Itself
 
-More info, at Components section above.
+More info, at [Components](#Components) section above.
 
 
 
@@ -69,6 +90,9 @@ More info, at Components section above.
 - ~~Fix Posh-Git don't working~~
 - ~~Use [Git Credential Manager](https://github.com/Microsoft/Git-Credential-Manager-for-Windows)~~
 - ~~Install NodeJS~~
+- ~~Separete functions for external use~~
+
+
 - Backup PowerShell profile first
 - Incremental PowerShell Profile
 - Remove Scoop requirement for some components
