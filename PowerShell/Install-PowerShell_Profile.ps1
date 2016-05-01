@@ -18,7 +18,7 @@ $scriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 
 # Functions
 # Get Functions
-mkdir $PSFolder\Functions
+mkdir $PSFolder\Functions | Out-Null
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/checkIsAdmin.ps1") > $PSFolder\Functions\checkIsAdmin.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/TestExecutionPolicy.ps1") > $PSFolder\Functions\TestExecutionPolicy.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/UpdatePowerShell.ps1") > $PSFolder\Functions\UpdatePowerShell.ps1
