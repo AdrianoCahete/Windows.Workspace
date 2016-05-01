@@ -48,11 +48,18 @@ This PowerShell profile contains (and obvious install) some components:
 - [posh-npm](https://github.com/MSOpenTech/posh-npm) - Powershell-NPM integration 
 - [PSGet](http://psget.net/) - Search and install PowerShell modules easy. (PowerShell5 do it natively)
 
+#### Tools
+This script add some handy tools, like [z](https://github.com/JannesMeyer/z.ps). 
+
+z is a "utility to jump to your favorite directories".
+
+You just need to type "z" on PowerShell console to see the magic. You can see all the commands [here](https://github.com/JannesMeyer/z.ps#usage)
+
 
 ## Scripts
 PowerShell profile contains part or full scripts from other sources
 - Modified version of [PoshFunctions Powershell Update](https://github.com/kilasuit/PoshFunctions)
-- [Wormeyman SourceCode Font Install](https://gist.github.com/wormeyman/9041798)
+- ~~[Wormeyman SourceCode Font Install](https://gist.github.com/wormeyman/9041798)~~ # Disabled for now (2016-05-01)
 - [Check is User has privileges to run (Check is Admin)](https://blogs.technet.microsoft.com/heyscriptingguy/2011/05/11/check-for-admin-credentials-in-a-powershell-script/)
 
 ## Functions
@@ -80,7 +87,7 @@ The following functions are not yet complete or tested, so the use is not recomm
 Isn't automatized yet, but you can edit alias, colors and all that pshazz using: ```pshazz edit monokaivs```
 To edit colors, you can edit concfg using:  ```concfg export``` edit than do ```concfg import``` and edit Porfile Itself
 
-More info, at [Components](#Components) section above.
+More info, at [Components](#components) section above.
 
 
 
@@ -90,7 +97,7 @@ More info, at [Components](#Components) section above.
 - ~~Fix Posh-Git don't working~~
 - ~~Use [Git Credential Manager](https://github.com/Microsoft/Git-Credential-Manager-for-Windows)~~
 - ~~Install NodeJS~~
-- ~~Separete functions for external use~~
+- ~~Separate functions for external use~~
 
 
 - Backup PowerShell profile first

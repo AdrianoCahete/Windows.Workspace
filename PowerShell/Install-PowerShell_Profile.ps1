@@ -32,7 +32,7 @@ mkdir $PSFolder\Functions | Out-Null
 . ($PSFolder + '.\Functions\UpdatePowerShell.ps1')
 . ($PSFolder + '.\Functions\Get-FileEncoding.ps1')
 . ($PSFolder + '.\Functions\Check-WindowsFeature.ps1')
-. ($PSFolder + '.\Functions\Install-SourceProFont.ps1')
+#. ($PSFolder + '.\Functions\Install-SourceProFont.ps1')
 
 
 
@@ -102,7 +102,7 @@ function Install-PowerShellProfile {
 			}
 			
 			# Install SourcePro Font
-			Install-SourceProFont
+			#Install-SourceProFont
 			
 			
 			# Scoop -- http://scoop.sh/
