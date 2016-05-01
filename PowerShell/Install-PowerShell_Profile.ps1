@@ -19,16 +19,16 @@ $scriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 # Functions
 # Get Functions
 mkdir $PSFolder\Functions
-(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/CheckIsAdmin.ps1") > $PSFolder\Functions\CheckIsAdmin.ps1
-(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/TestExecutionPolice.ps1") > $PSFolder\Functions\TestExecutionPolice.ps1
+(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/checkIsAdmin.ps1") > $PSFolder\Functions\checkIsAdmin.ps1
+(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/TestExecutionPolicy.ps1") > $PSFolder\Functions\TestExecutionPolicy.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/UpdatePowerShell.ps1") > $PSFolder\Functions\UpdatePowerShell.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/Get-FileEncoding.ps1") > $PSFolder\Functions\Get-FileEncoding.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/Check-WindowsFeature.ps1") > $PSFolder\Functions\Check-WindowsFeature.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/Install-SourceProFont.ps1") > $PSFolder\Functions\Install-SourceProFont.ps1
 
 # Load Functions 
-. ($PSFolder + '.\Functions\CheckIsAdmin.ps1')
-. ($PSFolder + '.\Functions\TestExecutionPolice.ps1')
+. ($PSFolder + '.\Functions\checkIsAdmin.ps1')
+. ($PSFolder + '.\Functions\TestExecutionPolicy.ps1')
 . ($PSFolder + '.\Functions\UpdatePowerShell.ps1')
 . ($PSFolder + '.\Functions\Get-FileEncoding.ps1')
 . ($PSFolder + '.\Functions\Check-WindowsFeature.ps1')
