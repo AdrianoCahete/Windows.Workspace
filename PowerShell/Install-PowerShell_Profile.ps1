@@ -187,6 +187,9 @@ function Install-PowerShellProfile {
 			# NodeJS
 			echo "`n+ Installing NodeJS..."
 			choco install nodejs.install -y
+			
+			# Fixing PSRepository 
+			Set-PSRepository -Name PSGallery -PackageManagementProvider NuGet -InstallationPolicy Trusted -SourceLocation "https://www.powershellgallery.com/api/v2/"
 
 			
 			# Copy functions to Documents Folder
@@ -209,7 +212,7 @@ function Install-PowerShellProfile {
 				(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/autoload/profile_posh-npm.ps1") > $PSFolder\scripts\autoload\profile_posh-npm.ps1
 			}
 			
-			echo "`n[!] Installing Complete!"
+			echo "`n[!] Install Complete!"
 			echo "`n/!\ You need to reload your profile to see changes."
 			# Reload Profile?
 			$profileReload = Read-Host "[?] Are you sure you want to reload your profile now? [Y] or [N]"

@@ -17,7 +17,7 @@ Colors can be edited with ```pshazz edit monokaivs``` command
 
 - The machine has to be direct access to ```https://raw.githubusercontent.com``` (without autentication process) to download packages
 - Install Scripts is just tested with Windows 10 (x64) and Windows 8.1 (x64)
-- **Create a profile backup beefore run this install**
+- **Create a profile backup before run this install**
 
 ## Install
 To install PowerShell Profile, just need to download and run (as admininistrator) ```PowerShell\Install-PowerShell_Profile.ps1```
