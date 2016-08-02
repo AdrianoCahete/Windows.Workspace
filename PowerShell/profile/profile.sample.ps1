@@ -10,6 +10,9 @@ Get-ChildItem "${PSdir}\*.ps1" | %{.$_}
 $Date = Get-Date -Format dd-MM-yyyy
 $Time = Get-Date -Format HH:mm
 
+# Shell Modifications
+$Shell = $Host.UI.RawUI
+
 # Colors
 $host.PrivateData.ErrorBackgroundColor = "Black"
 $host.PrivateData.DebugBackgroundColor = "Black"
@@ -19,6 +22,14 @@ $Host.PrivateData.ProgressBackgroundColor = "Black"
 set-psreadlineoption -t parameter darkgreen
 set-psreadlineoption -t operator darkgreen
 set-psreadlineoption -t string darkgreen
+
+# Window Size
+$Shell.WindowSize.width=175
+$Shell.WindowSize.height=52
+
+# Set BufferSize
+$Shell.BufferSize.width=150
+$Shell.BufferSize.height=5000
 
 # Set Default Location
 set-location c:\
