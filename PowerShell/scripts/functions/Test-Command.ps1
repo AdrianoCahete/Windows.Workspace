@@ -4,7 +4,7 @@
     $ErrorActionPreference = 'stop'
 
     try {
-        if(Get-Command $command){
+        if(Get-Command $command -ErrorAction SilentlyContinue){
             RETURN $true
         }
     } Catch {
