@@ -1,42 +1,37 @@
-#requires -version 3.0
+#requires -version 5
+#Requires -RunAsAdministrator
 
-$Product = "Windows Management Framework 5"
-$MinimumFxVersion = "4.5"
 
-$PSVersionMinimum = "3"
-$PSVersionExpected = "5"
+# Script Configs
+$NodeVersion = 8.5.0
+
+
+# Don't change
 $PSVersionInstalled = $PSVersionTable.PSVersion.Major
-
-Write-Verbose "[ PowerShell Info ]"
-Write-Verbose "Expected: $PSVersionExpected"
-Write-Verbose "Installed: $PSVersionInstalled"
-
 $DocumentsFolder = [Environment]::GetFolderPath("MyDocuments")
 $UserProfileFolder = [Environment]::GetFolderPath("UserProfile")
 $PSFolder = Join-Path $DocumentsFolder "\WindowsPowerShell"
-$scriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
+$PSDefaultParameterValues = @{"*WindowsOptionalFeature:Online"=$true;"*WindowsOptionalFeature:NoRestart"=$true;"*WindowsOptionalFeature:All"=$true}
+$OSVersion = [System.Environment]::OSVersion.Version.Major
+$OSLanguage = (Get-Culture).Name
+
+Write-Verbose "[ PowerShell Info ]"
+Write-Verbose "Installed: $PSVersionInstalled"
 
 # Functions
 # Get Functions
 mkdir $PSFolder\Functions | Out-Null
-#(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/checkIsAdmin.ps1") > $PSFolder\Functions\checkIsAdmin.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/TestExecutionPolicy.ps1") > $PSFolder\Functions\TestExecutionPolicy.ps1
-(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/UpdatePowerShell.ps1") > $PSFolder\Functions\UpdatePowerShell.ps1
-(new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/Get-FileEncoding.ps1") > $PSFolder\Functions\Get-FileEncoding.ps1
 (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/PowerShell/scripts/functions/Check-WindowsFeature.ps1") > $PSFolder\Functions\Check-WindowsFeature.ps1
 
 # Load Functions 
-#. ($PSFolder + '.\Functions\checkIsAdmin.ps1')
 . ($PSFolder + '.\Functions\TestExecutionPolicy.ps1')
-. ($PSFolder + '.\Functions\UpdatePowerShell.ps1')
-. ($PSFolder + '.\Functions\Get-FileEncoding.ps1')
 . ($PSFolder + '.\Functions\Check-WindowsFeature.ps1')
-
 
 
 # Install Powershell Tools
 function Install-Workspace {
-	if ($PSVersionInstalled -ge $PSVersionMinimum) {
+	if ($OSVersion -eq 10) {
 
 	    # Get Script Policy 
 	    $policy = Get-ExecutionPolicy
@@ -55,34 +50,54 @@ function Install-Workspace {
 		    echo "-----------------`n`n[!] Installing components... (This may take a while)`n"
 		
 		    # Install Chcolatey
-		    $chocoInstalled = choco
-		    if ("$chocoInstalled" -match "Chocolatey v") {
+		    if (Get-Command choco) {
 			    echo "[!] Chcolatey is already installed`n"
 		    }
 		    else {
+                echo "[!] Chcolatey isn't installed. Installing now...`n"
 			    (iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')))>$null 2>&1
 		    }
 		
 		    # PSReadLine -- https://github.com/lzybkr/PSReadLine/
 		    echo "`n+ Installing PSReadLine..."
 		    echo "This will might ask for Nuget as Packet Provider. Please, allow that install."
-		    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 		    Install-Module PSReadline -Force 
 		
 		    # posh-git -- https://github.com/dahlbyk/posh-git/
 		    echo "`n+ Installing posh-git..."
 		    Install-Module posh-git -Force
+
+            # Posh-SSH -- https://github.com/darkoperator/Posh-SSH/
+            echo "`n+ Installing posh-ssh..."
+            Install-Module -Name Posh-SSH
 		
-		    # Git Credential Manager for-Windows
+            # Git Credential Manager for-Windows
 		    echo "`n+ Installing Git Credential Manager..."
-		    choco install git-credential-manager-for-windows -y
+		    choco install git-credential-manager-for-windows -y		    
 		
-		    # NodeJS
-		    echo "`n+ Installing NodeJS..."
-		    choco install nodejs.install -y
+		    # Installing Node 8 ($NodeVersion)
+            if(Test-Command nvm) {
+                echo "`n+ Installing NodeJS..."
+                nvm install $NodeVersion
+                nvm use $NodeVersion
+            } else {
+                choco install nvm -y
+
+                echo "`n[!] You'll need to run nvm install after that.`nnvm install $NodeVersion `nnvm use $NodeVersion"
+            }
+
+            # Install Bash if Win10
+            Check-WindowsFeature Microsoft-Windows-Subsystem-Linux
+
+
+            # Check if needs to Install Windows Components
 		
+
 		    echo "`n[!] Install Complete!"
 	    }
+    }
+    else {
+        echo "This script only works in Widnows 10. If you need a older version, please see the others branches."
     }
 }
 
