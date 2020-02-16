@@ -1,4 +1,7 @@
 # Windows.Workspace
+
+## This version is deprecated in favor of `master` branch
+
 My Windows Workspace
 
 This is intended to people who like my workspace, work with me and, more important, me when format or install a new Windows.
