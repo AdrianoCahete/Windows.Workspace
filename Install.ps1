@@ -1,4 +1,31 @@
-#requires -version 3.0
+# Description: Workspace Install @ Boxstarter
+# Author: Adriano Cahete
+# This script is based on  @laurentkempe/Cacao [https://github.com/laurentkempe/Cacao/]
+
+# Disable UAC
+Disable-UAC
+
+# Get the base path from the ScriptToCall
+$bstrappkg = "-bootstrapPackage"
+
+$srcUrl = $Boxstarter['ScriptToCall']
+$strpos = $srcUrl.IndexOf($bstrappkg)
+
+$srcUrl = $srcUrl.Substring($strpos + $bstrappkg.Length)
+$srcUrl = $srcUrl.TrimStart("'", " ")
+$srcUrl = $srcUrl.TrimEnd("'", " ")
+$srcUrl = $srcUrl.Substring(0, $srcUrl.LastIndexOf("/"))
+$srcUrl += "/functions"
+write-host "helper script base URI is $srcUrl"
+
+function executeScript {
+	Param ([string]$script)
+	write-host "executing $srcUrl/$script ..."
+	iex ((new-object net.webclient).DownloadString("$srcUrl/$script"))
+}
+
+
+# ---
 
 $Product = "Windows Management Framework 5"
 $MinimumFxVersion = "4.5"

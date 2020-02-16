@@ -1,17 +1,23 @@
 # Windows.Workspace
 
+> The latest workng version is on `Legacy-PowerShell_Only` branch.  
+> 
+> This `master` branch doesn't work yet or not fully tested.
+
 This is intended to me when I install a new Windows instance (and for people who like my workspace or work with me).
 
 This repository have some components and PowerShell Scripts to install my workspace, using Boxstarter and Chocolatey
 
-## :warning: Requirements
 
-- The machine has to be direct access to `https://raw.githubusercontent.com` (without autentication process) to download packages
+## :warning: Requirements
+- The machine has to have direct access to `https://raw.githubusercontent.com` (without autentication process) to download packages
 - Install Scripts is just tested with Windows 10 (x64)
 - **Create a profile backup before run this install**
 
+
 ## Install
-~~To install click here (soon).~~
+~~To Install <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/Install.ps1'>click here</a>~~ (Not yet tested so, please, dont click!)
+
 
 
 ## PowerShell Profile
@@ -23,6 +29,10 @@ This repository have some components and PowerShell Scripts to install my worksp
 
 For more info: https://technet.microsoft.com/pt-br/library/ee176961.aspx
 
+### Windows Configs
+This Install file does the follow changes in windows:
+- Disables UAC
+- Changes some Windows Explorer definitions
 
 ### Components
 This PowerShell profile contains (and obvious install) some components:
