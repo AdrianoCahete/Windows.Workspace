@@ -11,7 +11,7 @@ Import-Module -Name posh-git
 Set-Alias l Get-ChildItemColor -Option AllScope
 Set-Alias ls Get-ChildItemColor -Option AllScope
 
-# Git alises
+# Git aliases
 Set-Alias gut git -Option AllScope
 Set-Alias gti git -Option AllScope
 Set-Alias giot git -Option AllScope
@@ -19,12 +19,12 @@ Set-Alias goit git -Option AllScope
 
 Set-Alias gpl -Value Git-Pull -Option AllScope
 
-# dotnet alisas
+# dotnet aliases
 Set-Alias gotnet dotnet -Option AllScope
 Set-Alias dot dotnet -Option AllScope
 Set-Alias dn dotnet -Option AllScope
 
-# npm aliasas
+# npm aliases
 Set-Alias nb -Value NPM-Helper -Option AllScope
 Set-Alias fbuild -Value NPM-Helper -Option AllScope
 
