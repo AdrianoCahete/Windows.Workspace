@@ -5,8 +5,11 @@ choco install -y nvm.portable
 choco install -y python
 choco install -y kdiff3
 choco install -y vscode
+# TODO: install visualstudio -- Get parameters
+# choco install -y visualstudio2019community --package-parameters "--installPath "C:\Program Files\VisualStudio\" --allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
 choco install -y notepadplusplus
 choco install -y fiddler
+choco install -y postman
 choco install -y rapidee
 
 # Download and set NodeJS
