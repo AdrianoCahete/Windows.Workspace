@@ -21,15 +21,16 @@ write-host "Helper script base URI is $srcUrl"
 function executeScript {
 	Param ([string]$script)
 	write-host "executing $srcUrl/$script ..."
-	iex ((new-object net.webclient).DownloadString("$srcUrl/$script"))
+	Invoke-Expression ((new-object net.webclient).DownloadString("$srcUrl/$script"))
 }
 
 #--- Setting up Windows ---
 executeScript "SystemConfig.ps1";
-executeScript "FileExplorer.ps1";
 executeScript "RemoveDefaultApps.ps1";
 executeScript "CommonDevTools.ps1";
 executeScript "CommonSofts.ps1";
+executeScript "NpmPackages.ps1";
+executeScript "PyPackages.ps1";
 
 
 # Copy PS Profile

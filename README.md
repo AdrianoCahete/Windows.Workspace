@@ -2,7 +2,7 @@
 
 > The latest workng version is on `Legacy-PowerShell_Only` branch.  
 > 
-> This `master` branch doesn't work yet or not fully tested.
+> This `master` branch doesn't work yet or is not fully tested.
 
 This is intended to me when I install a new Windows instance (and for people who like my workspace or work with me).
 
@@ -16,7 +16,8 @@ This repository have some components and PowerShell Scripts to install my worksp
 
 
 ## Install
-~~To Install <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/Install.ps1'>click here</a>~~ (Not yet tested so, please, dont click!)
+~~To Install <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/Install.ps1'>click here</a>~~  
+(Not yet tested so, please, dont click!)
 
 
 
@@ -37,7 +38,7 @@ This Install file does the follow changes in windows:
 ### Components
 This PowerShell profile contains (and obvious install) some components:
 - [Chcolatey](https://chocolatey.org/) - Machine Package Manager, like apt-get, but for Windows.
-- [NodeJE](http://nodejs.org//) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [NodeJS](http://nodejs.org//) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Git Credential Manager](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) - Secure Git credential storage for Windows. 
 - [Pshazz](https://github.com/lukesampson/pshazz) - Pshazz extends your powershell profile
 - [PSReadLine](https://github.com/lzybkr/PSReadLine/) -  A bash inspired readline implementation for PowerShell 

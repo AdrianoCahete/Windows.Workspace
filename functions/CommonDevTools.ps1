@@ -6,18 +6,19 @@ choco install -y microsoft-windows-terminal
 choco install -y python
 choco install -y kdiff3
 choco install -y vscode
-# TODO: install visualstudio -- Get parameters
+# TODO: Install visualstudio -- Get parameters
 # choco install -y visualstudio2019community --package-parameters "--installPath 'C:\Program Files\VisualStudio\' --allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
 choco install -y androidstudio
 choco install -y notepadplusplus
+# TODO: Install NotepadReplacer: https://www.binaryfortress.com/NotepadReplacer/FAQ/ -- See comments: https://chocolatey.org/packages/notepadreplacer
 choco install -y fiddler
 choco install -y postman
-choco install -y rapidee
+choco install -y rapidee # TODO: See if it's still useful
 
 # Download and set NodeJS
 refreshenv
-nvm install 8.17.0
-nvm use 8.17.0
+nvm install 13.11.0
+nvm use 13.11.0
 
 
 # Install-Module -Force oh-my-posh
