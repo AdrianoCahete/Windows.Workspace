@@ -9,11 +9,14 @@ choco install -y vscode
 # TODO: Install visualstudio -- Get parameters
 # choco install -y visualstudio2019community --package-parameters "--installPath 'C:\Program Files\VisualStudio\' --allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
 choco install -y androidstudio
+# TODO: Add plataform tools to path: G:\Android\sdk\platform-tools
 choco install -y notepadplusplus
 # TODO: Install NotepadReplacer: https://www.binaryfortress.com/NotepadReplacer/FAQ/ -- See comments: https://chocolatey.org/packages/notepadreplacer
 choco install -y fiddler
 choco install -y postman
 choco install -y rapidee # TODO: See if it's still useful
+choco install -y openssl # TODO: Add OpenSSL Bin to $env:Path
+choco install -y gnupg
 
 # Download and set NodeJS
 refreshenv
