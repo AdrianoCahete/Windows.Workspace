@@ -3,13 +3,15 @@
 choco install -y git-credential-manager-for-windows
 choco install -y nvm.portable
 choco install -y microsoft-windows-terminal
-choco install -y python
+choco install -y python3
+choco install -y python2
+choco install -y jdk8 # TODO: Add JAVA_HOME to path
 choco install -y kdiff3
 choco install -y vscode
 # TODO: Install visualstudio -- Get parameters
 # choco install -y visualstudio2019community --package-parameters "--installPath 'C:\Program Files\VisualStudio\' --allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
-choco install -y androidstudio
-# TODO: Add plataform tools to path: G:\Android\sdk\platform-tools
+choco install -y androidstudio # TODO: Add plataform tools to path: G:\Android\sdk\platform-tools -- Add ANDROID_HOME to path G:\Android\sdk\
+
 choco install -y notepadplusplus
 # TODO: Install NotepadReplacer: https://www.binaryfortress.com/NotepadReplacer/FAQ/ -- See comments: https://chocolatey.org/packages/notepadreplacer
 choco install -y fiddler
@@ -20,8 +22,8 @@ choco install -y gnupg
 
 # Download and set NodeJS
 refreshenv
-nvm install 13.11.0
-nvm use 13.11.0
+nvm install 14.0.0
+nvm use 14.0.0
 
 
 # Install-Module -Force oh-my-posh
