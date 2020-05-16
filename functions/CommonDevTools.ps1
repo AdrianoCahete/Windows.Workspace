@@ -2,6 +2,7 @@
 #choco install -y git --package-parameters="'/GitAndUnixToolsOnPath /WindowsTerminal'"
 choco install -y git-credential-manager-for-windows
 choco install -y nvm.portable
+choco install -y hub
 choco install -y microsoft-windows-terminal
 choco install -y python3
 choco install -y python2
@@ -22,8 +23,8 @@ choco install -y gnupg
 
 # Download and set NodeJS
 refreshenv
-nvm install 14.0.0
-nvm use 14.0.0
+nvm install 13.11.0
+nvm use 13.11.0
 
 
 # Install-Module -Force oh-my-posh
