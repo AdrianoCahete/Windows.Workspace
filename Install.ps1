@@ -2,6 +2,19 @@
 # Author: Adriano Cahete
 # This script is based on  @laurentkempe/Cacao [https://github.com/laurentkempe/Cacao/]
 
+# Install Chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+RefreshEnv 
+.$profile
+
+# Chocolatey Configs
+choco feature enable -n=useRememberedArgumentsForUpgrades
+choco feature enable -n=allowGlobalConfirmation
+
+# Install BoxStarter
+choco install Boxstarter -y
+
 # Disable UAC
 Disable-UAC
 

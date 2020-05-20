@@ -1,6 +1,3 @@
-# Chocolatey Configs
-choco feature enable -n=useRememberedArgumentsForUpgrades
-
 #--- Enable developer mode on the system ---
 Set-ItemProperty -Path HKLM:\Software\Microsoft\Windows\CurrentVersion\AppModelUnlock -Name AllowDevelopmentWithoutDevLicense -Value 1
 
@@ -34,7 +31,6 @@ Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -N
 
 #--- Remove People button
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People -Name PeopleBand -Value 0
-
 
 #--- Install NVidia Display Driver
 choco install nvidia-display-driver -y

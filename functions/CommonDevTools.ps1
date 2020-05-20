@@ -21,6 +21,10 @@ choco install -y rapidee # TODO: See if it's still useful
 choco install -y openssl # TODO: Add OpenSSL Bin to $env:Path
 choco install -y gnupg
 
+# Install Winget
+# https://github.com/microsoft/winget-cli/releases
+Start-Process "https://github.com/microsoft/winget-cli/releases"
+
 # Download and set NodeJS
 refreshenv
 nvm install 13.11.0
@@ -35,3 +39,4 @@ Install-Module PSReadLine -AllowPrerelease -Force
 Install-Module Get-ChildItemColor -AllowClobber -Force 
 PowerShellGet\Install-Module posh-git -AllowPrerelease -Force
 Install-Module z -AllowClobber -Force 
+Install-Module -Name windows-screenfetch -Force

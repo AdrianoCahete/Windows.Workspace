@@ -17,16 +17,17 @@ This repository have some components and PowerShell Scripts to install my worksp
 
 ## Install
 ~~To Install <a href='http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/AdrianoCahete/Windows.Workspace/master/Install.ps1'>click here</a>~~  
-(Not yet tested so, please, dont click!)
+(Not yet tested so, please, don't click!)
 
 
 
 ## PowerShell Profile
-**This Profile will replace your profile. Backup and incremetal install are planned.**
+**This Profile will replace your profile. Backup and incremental install are planned.**
 
 :grey_exclamation: This script may need to change Execution Policy to run
 
-~~Or you can run this command before: ```Set-ExecutionPolicy Unrestricted -Confirm```~~
+~~Or you can run this command before: ```
+ Unrestricted -Confirm```~~
 
 For more info: https://technet.microsoft.com/pt-br/library/ee176961.aspx
 
