@@ -21,11 +21,6 @@ choco install -y rapidee # TODO: See if it's still useful
 choco install -y openssl # TODO: Add OpenSSL Bin to $env:Path
 choco install -y gnupg
 
-# Install Winget
-# https://github.com/microsoft/winget-cli/releases
-Start-Process "https://github.com/microsoft/winget-cli/releases"
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/AdrianoCahete/winget-installer/master/Install.ps1'))
-
 # Download and set NodeJS
 refreshenv
 nvm install 13.11.0
