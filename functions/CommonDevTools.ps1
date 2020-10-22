@@ -20,6 +20,8 @@ choco install -y postman
 choco install -y rapidee # TODO: See if it's still useful
 choco install -y openssl # TODO: Add OpenSSL Bin to $env:Path
 choco install -y gnupg
+choco install -y cmake
+
 
 # Download and set NodeJS
 refreshenv
