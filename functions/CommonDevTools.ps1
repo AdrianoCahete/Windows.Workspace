@@ -6,6 +6,7 @@ choco install -y hub
 choco install -y microsoft-windows-terminal
 choco install -y python3
 choco install -y python2
+choco install -y vcpython27
 choco install -y jdk8 # TODO: Add JAVA_HOME to path
 choco install -y kdiff3
 choco install -y vscode
